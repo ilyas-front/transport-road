@@ -21,14 +21,6 @@ export const parseMarkerFromCSV = (row: SiteCSVRow): MarkerType => {
             number  
         ],
     };
-    if (result.id <= 1660) {
-        console.log('🔍 parseMarkerFromCSV Debug:', {
-            raw: { lat: row.latitude, lng: row.longitude },
-            parsed: { lat, lng },
-            result: result.position,
-            id: result.id
-        });
-    }
     return result;
 };
 export const parseCostDataFromCSV = (row: CostCSVRow): CostData & {
