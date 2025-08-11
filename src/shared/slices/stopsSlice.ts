@@ -8,7 +8,7 @@ const initialState: MarkersState = {
     error: null,
 };
 export const loadStops = createAsyncThunk('stops/loadStops', async () => {  
-    const result = await loadCSV<SiteCSVRow>('/sites.csv', ';');
+    const result = await loadCSV<SiteCSVRow>(`${import.meta.env.BASE_URL}sites.csv`, ';');
     if (result.error) {
         throw new Error(result.error);
     }

@@ -8,7 +8,7 @@ const initialState: CostsState = {
     error: null,
 };
 export const loadCosts = createAsyncThunk('costs/loadCosts', async () => {
-    const result = await loadCSV<CostCSVRow>('/costs.csv', ';');
+    const result = await loadCSV<CostCSVRow>(`${import.meta.env.BASE_URL}costs.csv`, ';');
     if (result.error) {
         throw new Error(result.error);
     }
