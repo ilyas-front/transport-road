@@ -56,9 +56,9 @@ const DetailedMarkerInfoComponent: React.FC<DetailedMarkerInfoProps> = ({ marker
     </div>
 
     <div className="text-xs text-gray-500 mt-2 pt-2 border-t">
-      {marker.position[0].toFixed(4)}, {marker.position[1].toFixed(4)}
+      {marker.position[0]}, {marker.position[1]}
     </div>
   </div>);
-};
+};  
 
 export const DetailedMarkerInfo = React.memo(DetailedMarkerInfoComponent);

@@ -17,17 +17,7 @@ export const selectSelectedMarker = createSelector(
 export const selectStopsWithCostData = createSelector(
     [selectStops, selectCostsMap, selectSelectedMarkerId],
     (stops, costsMap, selectedMarkerId): MarkerWithCost[] => {
-        const hasStops = stops.length > 0;
-        const hasCosts = Object.keys(costsMap).length > 0;
-
-        if (import.meta.env.DEV && hasStops && hasCosts) {
-            console.log('✅ Data loaded:', {
-                stopsCount: stops.length,
-                costsMapSize: Object.keys(costsMap).length,
-                selectedMarkerId
-            });
-        }
-
+        
         if (!selectedMarkerId) {
             return stops.map((stop: MarkerWithCost) => ({ ...stop, costData: undefined }));
         }

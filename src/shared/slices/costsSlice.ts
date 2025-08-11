@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CostsState, CostCSVRow } from '@/shared/types/MarkerType';
-import { parseCostDataFromCSV, createCostsMap } from '@/shared/lib/data-parsers';
+import { parseCostFromCSV, createCostsMap } from '@/shared/lib/data-parsers';
 import { loadCSV } from '@/shared/lib';
 const initialState: CostsState = {
     costsMap: {},
@@ -12,7 +12,7 @@ export const loadCosts = createAsyncThunk('costs/loadCosts', async () => {
     if (result.error) {
         throw new Error(result.error);
     }
-    const costsWithIds = result.data.map(parseCostDataFromCSV);
+    const costsWithIds = result.data.map(parseCostFromCSV);
     const costsMap = createCostsMap(costsWithIds);
     return { costsMap };
 });
