@@ -9,4 +9,15 @@ export default defineConfig({
             '@': '/src',
         },
     },
+    base: '/transport-road/',
+    build: {
+        outDir: 'dist',
+        assetsDir: 'assets',
+        sourcemap: true,
+        rollupOptions: {
+            input: {
+                main: './index.html',
+            },
+        },
+    }
 });
