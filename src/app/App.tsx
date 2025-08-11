@@ -1,10 +1,11 @@
 import React from 'react';
-import { ReduxProvider } from '../shared/providers/ReduxProvider';
-import { MapPage } from '@/pages/map';
-import { MapTooltip } from '@/widgets/map-viewer';
+import { ReduxProvider, } from '@/shared';
+import { MapPage } from '@/pages/map/ui/MapPage';
+import { MapTooltip } from '@/widgets/map-tooltip';
+
 export const App: React.FC = () => {
-    return (<ReduxProvider>
-      <MapPage />
-      <MapTooltip />
-    </ReduxProvider>);
+  return (<ReduxProvider>
+    <MapPage />
+    <MapTooltip />
+  </ReduxProvider>);
 };

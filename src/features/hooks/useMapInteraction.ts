@@ -1,38 +1,40 @@
 import { useCallback } from 'react';
 import L from 'leaflet';
-import { useAppDispatch } from '@/shared/providers';
-import { selectStop, clearSelection, StopWithCost } from '@/entities/stop';
-import { showTooltip, hideTooltip } from '@/shared/model/tooltipSlice';
+import { useAppDispatch } from '@/shared/providers/ReduxHooks';
+import { showTooltip, hideTooltip } from '@/shared/slices/tooltipSlice';
+import { MarkerWithCost, selectMarker, clearSelection } from '@/shared';
+
+
 export const useMapInteraction = () => {
-    const dispatch = useAppDispatch();
-    const handleStopClick = useCallback((stop: StopWithCost) => {
-        dispatch(selectStop(stop.id));
-    }, [dispatch]);
-    const handleStopHover = useCallback((stop: StopWithCost, event: L.LeafletMouseEvent) => {
-        dispatch(showTooltip({
-            stop,
-            position: {
-                x: event.containerPoint.x,
-                y: event.containerPoint.y,
-            },
-        }));
-    }, [dispatch]);
-    const handleStopLeave = useCallback(() => {
-        dispatch(hideTooltip());
-    }, [dispatch]);
-    const handleMapClick = useCallback(() => {
-        dispatch(clearSelection());
-    }, [dispatch]);
-    return {
-        handlers: {
-            onStopClick: handleStopClick,
-            onStopHover: handleStopHover,
-            onStopLeave: handleStopLeave,
-            onMapClick: handleMapClick,
-        },
-        selectStop: handleStopClick,
-        clearSelection: handleMapClick,
-        showTooltip: handleStopHover,
-        hideTooltip: handleStopLeave,
-    };
+  const dispatch = useAppDispatch();
+  const handleMarkerClick = useCallback((marker: MarkerWithCost) => {
+    dispatch(selectMarker(marker.id));
+  }, [dispatch]);
+  const handleMarkerHover = useCallback((marker: MarkerWithCost, event: L.LeafletMouseEvent) => {
+    dispatch(showTooltip({
+      marker,
+      position: {
+        x: event.containerPoint.x,
+        y: event.containerPoint.y,
+      },
+    }));
+  }, [dispatch]);
+  const handleMarkerLeave = useCallback(() => {
+    dispatch(hideTooltip());
+  }, [dispatch]);
+  const handleMapClick = useCallback(() => {
+    dispatch(clearSelection());
+  }, [dispatch]);
+  return {
+    handlers: {
+      onMarkerClick: handleMarkerClick,
+      onMarkerHover: handleMarkerHover,
+      onMarkerLeave: handleMarkerLeave,
+      onMapClick: handleMapClick,
+    },
+    selectMarker: handleMarkerClick,
+    clearSelection: handleMapClick,
+    showTooltip: handleMarkerHover,
+    hideTooltip: handleMarkerLeave,
+  };
 };

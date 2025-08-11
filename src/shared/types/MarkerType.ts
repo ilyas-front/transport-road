@@ -16,7 +16,7 @@ export interface CostCSVData {
 }
 export type SiteCSVRow = CSVRow<SiteCSVData>;
 export type CostCSVRow = CSVRow<CostCSVData>;
-export interface Stop {
+export interface MarkerType {
     id: number;
     name: string;
     position: [
@@ -31,23 +31,23 @@ export interface CostData {
     xnum: number;
     xpen: number;
 }
-export type StopWithCost = Stop & {
+export type MarkerWithCost = MarkerType & {
     costData?: CostData;
 };
 interface LoadingState {
     loading: boolean;
     error: string | null;
 }
-export interface StopsState extends LoadingState {
-    stops: Stop[];
+export interface MarkersState extends LoadingState {
+    markers: MarkerType[];
 }
 export interface CostsState extends LoadingState {
     costsMap: Record<string, CostData>;
 }
-export interface SelectedStopState {
-    selectedStopId: number | null;
+export interface SelectedMarkerState {
+    selectedMarkerId: number | null;
 }
-export type StopWithCostDetails = StopWithCost;
+export type MarkerWithCostDetails = MarkerWithCost;
 export interface Cost {
     fromId: number;
     toId: number;

@@ -1,2 +1,2 @@
-export * from './ui';
+export * from './ui/MapPage';
 export * from './model';

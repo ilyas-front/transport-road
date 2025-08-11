@@ -1,1 +1,1 @@
-export { StopMarkers } from './ui/StopMarkers';
+export { MapMarkers } from './ui/MapMarkers';

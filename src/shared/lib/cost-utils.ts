@@ -1,36 +1,6 @@
-import { COLORS, COST_THRESHOLDS } from '../config';
-type CostCategory = 'unreachable' | 'low' | 'medium' | 'high' | 'very_high';
-const COST_CATEGORIES: Record<CostCategory, {
-    color: string;
-    label: string;
-    timeLabel: string;
-}> = {
-    unreachable: {
-        color: COLORS.COST_RANGES.UNREACHABLE,
-        label: 'Нельзя доехать',
-        timeLabel: 'Недоступно'
-    },
-    low: {
-        color: COLORS.COST_RANGES.LOW,
-        label: 'Быстро',
-        timeLabel: 'мин'
-    },
-    medium: {
-        color: COLORS.COST_RANGES.MEDIUM,
-        label: 'Средне',
-        timeLabel: 'мин'
-    },
-    high: {
-        color: COLORS.COST_RANGES.HIGH,
-        label: 'Долго',
-        timeLabel: 'мин'
-    },
-    very_high: {
-        color: COLORS.COST_RANGES.VERY_HIGH,
-        label: 'Очень долго',
-        timeLabel: 'мин'
-    },
-} as const;
+import { COST_CATEGORIES, COST_THRESHOLDS, CostCategory } from '@/shared/const/cost';
+
+
 const categorizeCost = (cost?: number): CostCategory => {
     if (cost === undefined || cost === null)
         return 'unreachable';

@@ -39,22 +39,22 @@ const DEFAULT_ITEMS: TravelTimeItem[] = [
 export const TravelTime: React.FC<TravelTimeProps> = ({ className = '', title = 'Время в пути', customItems }) => {
     const legendItems = customItems || DEFAULT_ITEMS;
     return (<div className={`absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 z-40 max-w-xs ${className}`}>
-            <h3 className="font-semibold text-gray-900 mb-3">{title}</h3>
+        <h3 className="font-semibold text-gray-900 mb-3">{title}</h3>
 
-            <div className="space-y-2 text-sm">
-                {legendItems.map((item) => (<div key={item.id} className="flex items-center gap-2">
-                        <div className={`w-3 h-3 rounded-full ${item.color}`}/>
-                        <span>{item.label}</span>
-                    </div>))}
+        <div className="space-y-2 text-sm">
+            {legendItems.map((item) => (<div key={item.id} className="flex items-center gap-2">
+                <div className={`w-3 h-3 rounded-full ${item.color}`} />
+                <span>{item.label}</span>
+            </div>))}
 
-                <div className="flex items-center gap-2 mt-3 pt-2 border-t">
-                    <div className="w-3 h-3 rounded-full bg-blue-500 border-2 border-white"/>
-                    <span className="font-medium">Выбранная остановка</span>
-                </div>
+            <div className="flex items-center gap-2 mt-3 pt-2 border-t">
+                <div className="w-3 h-3 rounded-full bg-blue-500 border-2 border-white" />
+                <span className="font-medium">Выбранная остановка</span>
             </div>
+        </div>
 
-            <div className="mt-4 pt-3 border-t text-xs text-gray-600">
-                <p>Кликните по остановке для расчета времени до всех остальных точек</p>
-            </div>
-        </div>);
+        <div className="mt-4 pt-3 border-t text-xs text-gray-600">
+            <p>Кликните по остановке для расчета времени до всех остальных точек</p>
+        </div>
+    </div>);
 };

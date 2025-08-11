@@ -1,18 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { StopsState, SiteCSVRow } from './types';
-import { parseStopFromCSV } from '../lib/parsers';
+import { MarkersState, SiteCSVRow } from '@/shared/types/MarkerType';
+import { parseMarkerFromCSV } from '@/shared/lib/data-parsers';
 import { loadCSV } from '@/shared/lib';
-const initialState: StopsState = {
-    stops: [],
+const initialState: MarkersState = {
+    markers: [],
     loading: false,
     error: null,
 };
-export const loadStops = createAsyncThunk('stops/loadStops', async () => {
+export const loadStops = createAsyncThunk('stops/loadStops', async () => {  
     const result = await loadCSV<SiteCSVRow>('/sites.csv', ';');
     if (result.error) {
         throw new Error(result.error);
     }
-    return result.data.map(parseStopFromCSV);
+    return result.data.map(parseMarkerFromCSV);
 });
 const stopsSlice = createSlice({
     name: 'stops',
@@ -26,7 +26,7 @@ const stopsSlice = createSlice({
         })
             .addCase(loadStops.fulfilled, (state, action) => {
             state.loading = false;
-            state.stops = action.payload;
+            state.markers = action.payload;
         })
             .addCase(loadStops.rejected, (state, action) => {
             state.loading = false;

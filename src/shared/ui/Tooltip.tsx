@@ -20,9 +20,9 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, content, visible = f
         zIndex: 1000,
     } : {};
     return (<>
-      {children}
-      <div className={`rounded  ${className}`} style={tooltipStyle}>
-        {content}
-      </div>
+        {children}
+        <div className={`rounded  ${className}`} style={tooltipStyle}>
+            {content}
+        </div>
     </>);
 };

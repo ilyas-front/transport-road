@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loader } from '@/shared/ui';
+import { Loader } from '@/shared';
 interface LoadingStateProps {
     loadingText?: string;
 }

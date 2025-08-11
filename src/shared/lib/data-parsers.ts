@@ -1,4 +1,4 @@
-import { SiteCSVRow, CostCSVRow, Stop, CostData, Cost } from '../model/types';
+import { SiteCSVRow, CostCSVRow, MarkerType, CostData, Cost } from '@/shared/types/MarkerType';
 const createParser = <T extends number>(parser: (value: string) => T, shouldRound: boolean = false) => (value: string): T => {
     if (!value || value === '')
         return 0 as T;
@@ -10,19 +10,19 @@ const createParser = <T extends number>(parser: (value: string) => T, shouldRoun
 const parseFloatValue = createParser((v: string) => Number.parseFloat(v), false);
 const parseIntValue = createParser((v: string) => Number.parseInt(v, 10), false);
 const parseRoundedFloat = createParser((v: string) => Number.parseFloat(v), true);
-export const parseStopFromCSV = (row: SiteCSVRow): Stop => {
-    const lat = parseFloatValue(row.latitude);
+export const parseMarkerFromCSV = (row: SiteCSVRow): MarkerType => {
+    const lat = parseFloatValue(row.latitude);  
     const lng = parseFloatValue(row.longitude);
     const result = {
         id: parseIntValue(row.site_id),
         name: row.site_name,
         position: [lat, lng] as [
             number,
-            number
+            number  
         ],
     };
     if (result.id <= 1660) {
-        console.log('🔍 parseStopFromCSV Debug:', {
+        console.log('🔍 parseMarkerFromCSV Debug:', {
             raw: { lat: row.latitude, lng: row.longitude },
             parsed: { lat, lng },
             result: result.position,
